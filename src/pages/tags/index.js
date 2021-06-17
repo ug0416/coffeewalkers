@@ -1,9 +1,8 @@
 import React from 'react'
+import { kebabCase } from 'lodash'
 import { Helmet } from 'react-helmet'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import Layout from '../../components/Layout'
-import BlogRoll from '../components/BlogRoll'
-
 
 const TagsPage = ({
   data: {
@@ -26,7 +25,9 @@ const TagsPage = ({
             <ul className="taglist">
               {group.map((tag) => (
                 <li key={tag.fieldValue}>
-                  <BlogRoll />
+                  <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+                    {tag.fieldValue} ({tag.totalCount})
+                  </Link>
                 </li>
               ))}
             </ul>
