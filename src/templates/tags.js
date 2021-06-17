@@ -2,50 +2,16 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
+import PreviewCompatibleImage from './PreviewCompatibleImage'
 
 class TagRoute extends React.Component {
   render() {
     const posts = this.props.data.allMarkdownRemark.edges
     const postLinks = posts.map((post) => (
       <li key={post.node.fields.slug}>
-      <div className="columns is-multiline">
-        {posts &&
-          posts.map(({ node: post }) => (
-            <div className="is-parent column is-6" key={post.node.fields.slug}>
-              <article
-                className={`blog-list-item tile is-child box notification ${
-                  post.frontmatter.featuredpost ? 'is-featured' : ''
-                }`}
-              >
-                <header>
-                  {post.frontmatter.featuredimage ? (
-                    <div className="featured-thumbnail">
-                      <PreviewCompatibleImage
-                        imageInfo={{
-                          image: post.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
-                        }}
-                      />
-                    </div>
-                  ) : null}
-                  <p className="post-meta">
-                    <Link
-                      className="title has-text-primary is-size-4"
-                      to={post.fields.slug}
-                    >
-                      {post.frontmatter.title}
-                    </Link>
-                  </p>
-                </header>
-                <p>
-                  <Link className="button" to={post.fields.slug}>
-                    Keep Reading →
-                  </Link>
-                </p>
-              </article>
-            </div>
-          ))}
-      </div>
+        <Link to={post.node.fields.slug}>
+          <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
+        </Link>
       </li>
     ))
     const tag = this.props.pageContext.tag
@@ -66,7 +32,19 @@ class TagRoute extends React.Component {
                 style={{ marginBottom: '6rem' }}
               >
                 <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>
-                <ul className="taglist">{postLinks}</ul>
+                <ul className="taglist">
+                {post.frontmatter.featuredimage ? (
+                    <div className="featured-thumbnail">
+                      <PreviewCompatibleImage
+                        imageInfo={{
+                          image: post.frontmatter.featuredimage,
+                          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
+                        }}
+                      />
+                    </div>
+                  ) : null}
+                  {postLinks}
+                </ul>
                 <p>
                   <Link to="/tags/">Browse all tags</Link>
                 </p>
