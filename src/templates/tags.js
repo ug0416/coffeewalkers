@@ -10,12 +10,12 @@ class TagRoute extends React.Component {
     const postLinks = posts.map((post) => (
       <li key={post.node.fields.slug}>
         <Link to={post.node.fields.slug}>
-        {post.node.frontmatter.featuredimage ? (
+        {post.frontmatter.featuredimage ? (
                     <div className="featured-thumbnail">
                       <PreviewCompatibleImage
                         imageInfo={{
-                          image: post.node.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${post.node.frontmatter.title}`,
+                          image: post.frontmatter.featuredimage,
+                          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
                         }}
                       />
                     </div>
