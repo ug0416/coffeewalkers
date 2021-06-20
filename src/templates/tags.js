@@ -9,13 +9,13 @@ class TagRoute extends React.Component {
     const postLinks = posts.map((post) => (
       <li key={post.node.fields.slug}>
         <Link to={post.node.fields.slug}>
+        <div className="featured-thumbnail">{post.node.frontmatter.featuredimage}</div>
           <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
         </Link>
       </li>
     ))
     const tag = this.props.pageContext.tag
     const title = this.props.data.site.siteMetadata.title
-    const image = this.props.data.allMarkdownRemark.featuredimage
     const totalCount = this.props.data.allMarkdownRemark.totalCount
     const tagHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
@@ -31,7 +31,6 @@ class TagRoute extends React.Component {
                 className="column is-10 is-offset-1"
                 style={{ marginBottom: '6rem' }}
               >
-                <div className="featured-thumbnail">{image}</div>
                 <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>
                 <ul className="taglist">{postLinks}</ul>
                 <p>
