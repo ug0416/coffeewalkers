@@ -10,16 +10,6 @@ class TagRoute extends React.Component {
     const postLinks = posts.map((post) => (
       <li key={post.node.fields.slug}>
         <Link to={post.node.fields.slug}>
-        {post.frontmatter.featuredimage ? (
-                    <div className="featured-thumbnail">
-                      <PreviewCompatibleImage
-                        imageInfo={{
-                          image: post.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
-                        }}
-                      />
-                    </div>
-                  ) : null}
           <h2 className="is-size-4">{post.node.frontmatter.title}</h2>
         </Link>
       </li>
@@ -43,7 +33,19 @@ class TagRoute extends React.Component {
                 style={{ marginBottom: '6rem' }}
               >
                 <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>
-                <ul className="taglist">{postLinks}</ul>
+                <ul className="taglist">
+                {post.node.frontmatter.featuredimage ? (
+                    <div className="featured-thumbnail">
+                      <PreviewCompatibleImage
+                        imageInfo={{
+                          image: post.node.frontmatter.featuredimage,
+                          alt: `featured image thumbnail for post ${post.node.frontmatter.title}`,
+                        }}
+                      />
+                    </div>
+                  ) : null}
+                  {postLinks}
+                </ul>
                 <p>
                   <Link className="button" to="/tags/">#タグ一覧</Link>
                 </p>
