@@ -15,6 +15,7 @@ class TagRoute extends React.Component {
     ))
     const tag = this.props.pageContext.tag
     const title = this.props.data.site.siteMetadata.title
+    const image = this.props.data.frontmatter.featuredimage
     const totalCount = this.props.data.allMarkdownRemark.totalCount
     const tagHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
@@ -30,19 +31,8 @@ class TagRoute extends React.Component {
                 className="column is-10 is-offset-1"
                 style={{ marginBottom: '6rem' }}
               >
-                <h3 className="title is-size-4 is-bold-light">
-                {post.node.frontmatter.featuredimage ? (
-                    <div className="featured-thumbnail">
-                      <PreviewCompatibleImage
-                        imageInfo={{
-                          image: post.node.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${post.node.frontmatter.title}`,
-                        }}
-                      />
-                    </div>
-                  ) : null}
-                  {tagHeader}
-                </h3>
+                <div className="featured-thumbnail">{image}</div>
+                <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>
                 <ul className="taglist">{postLinks}</ul>
                 <p>
                   <Link to="/tags/">タグ一覧</Link>
