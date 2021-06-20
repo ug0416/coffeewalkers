@@ -2,6 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
+import PreviewCompatibleImage from './PreviewCompatibleImage'
 
 class TagRoute extends React.Component {
   render() {
@@ -9,7 +10,17 @@ class TagRoute extends React.Component {
     const postLinks = posts.map((post) => (
       <li key={post.node.fields.slug}>
         <Link to={post.node.fields.slug}>
-          <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
+        {post.node.frontmatter.featuredimage ? (
+                    <div className="featured-thumbnail">
+                      <PreviewCompatibleImage
+                        imageInfo={{
+                          image: post.node.frontmatter.featuredimage,
+                          alt: `featured image thumbnail for post ${post.node.frontmatter.title}`,
+                        }}
+                      />
+                    </div>
+                  ) : null}
+          <h2 className="is-size-4">{post.node.frontmatter.title}</h2>
         </Link>
       </li>
     ))
@@ -67,6 +78,13 @@ export const tagPageQuery = graphql`
           }
           frontmatter {
             title
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 120, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
