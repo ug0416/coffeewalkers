@@ -2,7 +2,6 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import PreviewCompatibleImage from './PreviewCompatibleImage'
 
 class TagRoute extends React.Component {
   render() {
@@ -10,24 +9,17 @@ class TagRoute extends React.Component {
     const postLinks = posts.map((post) => (
       <li key={post.node.fields.slug}>
         <Link to={post.node.fields.slug}>
-        <div className="featured-thumbnail">
-        <PreviewCompatibleImage
-        imageInfo={{
-          image: post.frontmatter.featuredimage,
-          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
-        }}
-      />
-      </div>
-          <h2 className="is-size-4">{post.node.frontmatter.title}</h2>
+          <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
         </Link>
       </li>
     ))
     const tag = this.props.pageContext.tag
     const title = this.props.data.site.siteMetadata.title
+    const image = this.props.data.allMarkdownRemark.featuredimage
     const totalCount = this.props.data.allMarkdownRemark.totalCount
-    const tagHeader = `${totalCount} post${
+    const tagHeader = `“${tag}”のタグがついた投稿が ${totalCount} post${
       totalCount === 1 ? '' : 's'
-    } tagged with “${tag}”`
+    } 見つかりました`
 
     return (
       <Layout>
