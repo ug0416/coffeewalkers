@@ -17,7 +17,7 @@ class TagRoute extends React.Component {
     const title = this.props.data.site.siteMetadata.title
     const image = this.props.data.allMarkdownRemark.featuredimage
     const totalCount = this.props.data.allMarkdownRemark.totalCount
-    const tagHeader = `“${tag}”のタグがついた投稿が ${totalCount} post${
+    const tagHeader = `“${tag}”タグが ${totalCount} 投稿${
       totalCount === 1 ? '' : 's'
     } 見つかりました`
 
@@ -34,7 +34,7 @@ class TagRoute extends React.Component {
                 <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>
                 <ul className="taglist">{postLinks}</ul>
                 <p>
-                  <Link to="/tags/">タグ一覧</Link>
+                  <Link className="button" to="/tags/">#タグ一覧</Link>
                 </p>
               </div>
             </div>
