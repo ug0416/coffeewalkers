@@ -18,7 +18,7 @@ class TagRoute extends React.Component {
     const image = this.props.data.allMarkdownRemark.featuredimage
     const totalCount = this.props.data.allMarkdownRemark.totalCount
     const tagHeader = `“${tag}”タグが ${totalCount} 投稿${
-      totalCount === 1 ? '' : 's'
+      totalCount === 1 ? '' : ''
     } 見つかりました`
 
     return (
