@@ -31,12 +31,12 @@ class TagRoute extends React.Component {
                 style={{ marginBottom: '6rem' }}
               >
                 <h3 className="title is-size-4 is-bold-light">
-                {posts.frontmatter.featuredimage ? (
+                {post.node.frontmatter.featuredimage ? (
                     <div className="featured-thumbnail">
                       <PreviewCompatibleImage
                         imageInfo={{
-                          image: posts.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${posts.frontmatter.title}`,
+                          image: post.node.frontmatter.featuredimage,
+                          alt: `featured image thumbnail for post ${post.node.frontmatter.title}`,
                         }}
                       />
                     </div>
