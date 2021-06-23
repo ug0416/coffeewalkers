@@ -144,6 +144,35 @@ $menu-label-color: $white-ter
   flex-basis: 100%;
   margin: 0 1.5em 0 0;
 
+// blog post
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table tr :nth-child(1) {
+  background: #f84e39;
+  color: #fff;
+}
+
+table tr :nth-child(1), table tr :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table tr :nth-child(2) {
+  background: #fff;
+}
+
+table td, table th {
+  color: #c7c7c7;
+  border-left: solid 1px #c7c7c7;
+  border-right: solid 1px #c7c7c7;
+  border-bottom: solid 1px #c7c7c7;
+  text-align: center;
+  padding: 10px 0;
+}
+
 
 @import "~bulma"
 
