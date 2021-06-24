@@ -28,7 +28,7 @@ export const BlogPostTemplate = ({
             </h1>
             <p class="title is-10">{description}</p>
             <PostContent content={content} />
-            <PostContent content={table} />
+            {table}
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
                 <h4>Tags</h4>
@@ -74,6 +74,7 @@ const BlogPost = ({ data }) => {
             />
           </Helmet>
         }
+        table={post.frontmatter.table}
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
       />
