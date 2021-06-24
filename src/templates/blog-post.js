@@ -28,9 +28,7 @@ export const BlogPostTemplate = ({
             </h1>
             <p class="title is-10">{description}</p>
             <PostContent content={content} />
-            <div>
             <PostContent content={{table}} />
-            </div>
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
                 <h4>Tags</h4>
